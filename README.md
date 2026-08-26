@@ -21,6 +21,7 @@ pre-commit feed-XML validator.
 - **Adding a new show to this deployment?** See [ADDING_A_SHOW.md](ADDING_A_SHOW.md).
 - **Running your own ai-nuggets** (your own Cloudflare account, cron, API
   keys)? See [SETUP.md](SETUP.md).
+- **Want a local web player?** See [webapp/README.md](webapp/README.md) — a lightweight Flask app that serves a browseable episode list with audio player and transcript viewer from your local `podcasts/` directory.
 
 ## Repo layout
 
@@ -34,6 +35,7 @@ ai-nuggets/
 │   ├── publish_episode.sh              # upload an mp3 to R2
 │   └── update_feed_for_worker.py       # rewrite feed.xml enclosures for the Worker
 ├── worker/                             # Cloudflare Worker (analytics + redirect)
+├── webapp/                             # optional local web player (Flask)
 └── podcasts/<slug>/
     ├── show.toml                       # voice config, paths, RSS metadata
     ├── PROMPT.md                       # audience profile + daily recipe for the AI
