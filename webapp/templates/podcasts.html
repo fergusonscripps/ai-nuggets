@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}AI Nuggets — Shows{% endblock %}
+{% block body %}
+<h1 style="margin-bottom: 6px;">AI Nuggets</h1>
+<p style="color: var(--muted); font-size: 13px; margin-bottom: 24px;">
+    Daily AI-generated research briefings ·
+    <a href="https://github.com/andrewsu/ai-nuggets" target="_blank" rel="noopener"
+       style="color: inherit; text-decoration: underline;">andrewsu/ai-nuggets</a>
+</p>
+
+{% if not shows %}
+<p style="color: var(--muted); text-align: center; padding: 60px 0; font-family: var(--mono);">
+    No shows found. Check that PODCAST_DIR points to your podcasts/ directory.
+</p>
+{% else %}
+{% for show in shows %}
+<a class="card" href="/podcasts/{{ show.slug }}">
+    <div class="card-icon">🎙️</div>
+    <div>
+        <div class="card-title">{{ show.title }}</div>
+        <div class="card-desc">{{ show.description }}</div>
+        <div class="card-meta">
+            {{ show.host }} · {{ show.episodes | length }} episode{{ 's' if show.episodes | length != 1 else '' }}
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endif %}
+{% endblock %}

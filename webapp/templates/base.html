@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}AI Nuggets{% endblock %}</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+        --accent:  #E8823A;
+        --bg:      #F5F4F2;
+        --surface: #FFFFFF;
+        --text:    #1A1A1A;
+        --muted:   #6B6B6B;
+        --border:  #E0DDD9;
+        --font:    'DM Sans', system-ui, Arial, sans-serif;
+        --mono:    'DM Mono', 'Courier New', monospace;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=DM+Mono&display=swap');
+
+    body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 20px;
+        height: 48px;
+        background: #1A1A1A;
+        color: white;
+        font-size: 14px;
+    }
+
+    nav a { color: #ccc; text-decoration: none; }
+    nav a:hover { color: white; }
+    nav .brand { font-weight: 700; color: white; margin-right: 8px; }
+
+    main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 28px 20px 60px;
+    }
+
+    h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+
+    .card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 20px;
+        text-decoration: none;
+        color: var(--text);
+        margin-bottom: 12px;
+        transition: box-shadow 0.15s;
+        border-left: 4px solid var(--accent);
+    }
+    .card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+    .card-icon { font-size: 28px; flex-shrink: 0; }
+    .card-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+    .card-desc  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .card-meta  { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 6px; }
+</style>
+{% block styles %}{% endblock %}
+</head>
+<body>
+<nav>
+    <a href="/podcasts" class="brand">🎙️ AI Nuggets</a>
+</nav>
+<main>
+{% block body %}{% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>
