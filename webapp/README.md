@@ -16,14 +16,42 @@ By default the app looks for podcasts one level up (`../podcasts/`), which is th
 PODCAST_DIR=/path/to/podcasts python app.py
 ```
 
-## Production (gunicorn)
+## Production (gunicorn + nginx)
+
+Run the app with gunicorn, bound to localhost only:
 
 ```bash
 pip install gunicorn
-gunicorn -w 2 -b 0.0.0.0:5000 app:app
+gunicorn -w 2 -b 127.0.0.1:5000 app:app
 ```
 
-Put nginx in front of it to handle TLS and static caching.
+Then put nginx in front to handle the public port and (optionally) TLS. A minimal site config — save to `/etc/nginx/sites-available/podcasts` and symlink to `sites-enabled/`:
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain-or-ip;
+
+    # stream audio efficiently without passing through Flask
+    location /podcasts/audio/ {
+        alias /path/to/podcasts/;
+        sendfile on;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/podcasts /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+For HTTPS, run `sudo certbot --nginx -d your-domain` (requires [Certbot](https://certbot.eff.org/) and a real domain pointed at your server).
 
 ## Podcast Directory Layout
 
