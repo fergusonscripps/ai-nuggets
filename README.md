@@ -1,16 +1,10 @@
-# AI Nuggets
+# AI Nuggets — + Web Player
 
-Personalized AI-curated podcast feeds. Each show under `podcasts/<slug>/`
-is a separate feed for a separate audience.
+> **This is a fork of [andrewsu/ai-nuggets](https://github.com/andrewsu/ai-nuggets).** The only addition is `webapp/` — a lightweight Flask web player that lets you browse and listen to your local podcast output in a browser. Everything else (pipeline, TTS, cron setup) is unchanged from the original.
 
-## Shows
+See [webapp/README.md](webapp/README.md) for setup instructions.
 
-| Slug | Description | Subscribe |
-|---|---|---|
-| [`structure-brief`](podcasts/structure-brief/) | Daily assessment of antibody-antigen structures from physical and ML-based design tools | [feed.xml](https://raw.githubusercontent.com/fergusonscripps/ai-nuggets/main/podcasts/structure-brief/feed.xml) |
-| [`influenza-structural-brief`](podcasts/influenza-structural-brief/) | Daily structural immunology brief covering influenza HA/NA structure, broadly neutralizing antibodies, and vaccine design | [feed.xml](https://raw.githubusercontent.com/fergusonscripps/ai-nuggets/main/podcasts/influenza-structural-brief/feed.xml) |
-| [`protein-design-tools`](podcasts/protein-design-tools/) | Daily coverage of new protein design methods, tools, and benchmarks | [feed.xml](https://raw.githubusercontent.com/fergusonscripps/ai-nuggets/main/podcasts/protein-design-tools/feed.xml) |
-| [`cryoem-tools-search`](podcasts/cryoem-tools-search/) | Daily coverage of new cryo-EM software, methods, and tools | [feed.xml](https://raw.githubusercontent.com/fergusonscripps/ai-nuggets/main/podcasts/cryoem-tools-search/feed.xml) |
+---
 
 After cloning, run `git config core.hooksPath .githooks` once to activate the
 pre-commit feed-XML validator.
